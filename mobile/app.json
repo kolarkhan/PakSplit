@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "PAK SPLIT",
+    "slug": "pak-split",
+    "scheme": "paksplit",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.paksplit.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#0D1B3D"
+      }
+    },
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0D1B3D"
+    }
+  }
+}

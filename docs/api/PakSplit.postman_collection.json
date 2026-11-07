@@ -1,0 +1,92 @@
+{
+  "info": {
+    "name": "PAK SPLIT API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/v1/auth/register",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Ali Raza\",\n  \"email\": \"ali@example.com\",\n  \"phone\": \"03001234567\",\n  \"password\": \"Passw0rd!\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/v1/auth/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"ali@example.com\",\n  \"password\": \"Passw0rd!\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Groups - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": "{{baseUrl}}/api/v1/groups",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Murree Trip Crew\",\n  \"description\": \"Weekend getaway split\",\n  \"members\": []\n}"
+        }
+      }
+    },
+    {
+      "name": "Expenses - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": "{{baseUrl}}/api/v1/expenses",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"groupId\": \"{{groupId}}\",\n  \"title\": \"Dinner at Monal\",\n  \"category\": \"food\",\n  \"totalAmount\": 4000,\n  \"paidBy\": \"{{userId}}\",\n  \"splitType\": \"equal\",\n  \"participants\": [\"{{userId}}\", \"{{friendId}}\"]\n}"
+        }
+      }
+    },
+    {
+      "name": "Settlements - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": "{{baseUrl}}/api/v1/settlements",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"groupId\": \"{{groupId}}\",\n  \"payerUserId\": \"{{userId}}\",\n  \"receiverUserId\": \"{{friendId}}\",\n  \"amount\": 1000,\n  \"method\": \"easypaisa\",\n  \"transactionReference\": \"EP-123456\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Reports - Monthly",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": "{{baseUrl}}/api/v1/reports/monthly"
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:4000" },
+    { "key": "accessToken", "value": "" },
+    { "key": "userId", "value": "" },
+    { "key": "friendId", "value": "" },
+    { "key": "groupId", "value": "" }
+  ]
+}

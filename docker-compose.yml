@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: pak-split-mongo
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    container_name: pak-split-server
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./server:/app/server
+      - /app/server/node_modules
+
+volumes:
+  mongo_data:
+
